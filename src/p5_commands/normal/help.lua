@@ -51,7 +51,7 @@ AuroraFramework.services.commandService.create(function(player, command, args)
             ("?%s | %s"):format(commandToDisplay.properties.name, commandToDisplay.properties.description),
             "Shorthands: "..table.concat(formattedShorthands, ", "),
             "Permissions Required: "..table.concat(permissionsRequired, ", ")
-        }, "\n\\---")
+        }, "\n\\____")
 
         table.insert(commandsFormatted, commandFormatted)
 
@@ -65,8 +65,8 @@ AuroraFramework.services.commandService.create(function(player, command, args)
             addonConfiguration.information.description.long,
             "",
             "Commands -----",
-            table.concat(commandsFormatted, "\n")
-        }, "\n---\n"),
+            table.concat(commandsFormatted, "\n\n")
+        }, "\n"),
 
         player
     )
