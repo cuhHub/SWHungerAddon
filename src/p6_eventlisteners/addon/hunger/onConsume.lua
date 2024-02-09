@@ -22,20 +22,20 @@
 hungerLibrary.events.consuming:connect(function(player, hasFinished, consumable)
     if not hasFinished then
         AuroraFramework.services.notificationService.info(
-            "Consuming",
+            "Consumption",
             ("You have started eating '%s'."):format(consumable.properties.name),
             player
         )
     else
         if consumable.properties.hungerGain > 0 then
             AuroraFramework.services.notificationService.success(
-                "Consuming",
+                "Consumption",
                 ("Yum! You have finished eating '%s'.\n%s Hunger."):format(consumable.properties.name, hungerLibrary.utils.formatGivenHunger(consumable.properties.hungerGain)),
                 player
             )
         else
             AuroraFramework.services.notificationService.warning(
-                "Consuming",
+                "Consumption",
                 ("Eh.. You have finished eating '%s', but it has made you more hungry.\n%s Hunger."):format(consumable.properties.name, hungerLibrary.utils.formatGivenHunger(consumable.properties.hungerGain)),
                 player
             )
