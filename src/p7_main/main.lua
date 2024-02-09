@@ -50,7 +50,7 @@ hungerLibrary.configuration.startingHunger = g_savedata.userAddonConfig.starting
 hungerLibrary.configuration.hungerDecreaseTimer = g_savedata.userAddonConfig.hungerDecreaseTimer
 hungerLibrary.configuration.hungerDecreaseAmount = g_savedata.userAddonConfig.hungerDecreaseAmount
 
--- // Setup Consumables
+-- // Register Consumables
 hungerLibrary.consumables.registerConsumable(
     "Anchovie",
     82,
@@ -127,6 +127,8 @@ hungerLibrary.consumables.registerConsumable(
     16,
     5.7
 )
+
+
 
 -- // Library Initialization
 hungerLibrary.initialize()
