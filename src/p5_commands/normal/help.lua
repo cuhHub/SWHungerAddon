@@ -27,12 +27,14 @@ AuroraFramework.services.commandService.create(function(player, command, args)
             table.insert(formattedShorthands, "?"..shorthand)
         end
 
-        -- add formatted info to toSend table
-        table.insert(commandsFormatted, table.concat({
+        -- add formatted command to table
+        local commandFormatted = table.concat({
             ("?%s | %s"):format(commandToDisplay.properties.name, commandToDisplay.properties.description),
             table.concat(formattedShorthands, ", "),
             (commandToDisplay.properties.requiresAdmin and "Requires Admin" or commandToDisplay.properties.requiresAuth and "Requires Auth") or "Requires No Permissions"
-        }))
+        }, "\n")
+
+        table.insert(commandsFormatted, commandFormatted)
     end
 
     -- send help message
