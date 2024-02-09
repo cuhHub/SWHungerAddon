@@ -35,5 +35,9 @@ hungerLibrary.utils = {
         )
     end,
 
+    formatGivenHunger = function(hunger)
+        return (hunger >= 0 and "+" or "-")..math.floor(hunger)
+    end,
+
     clamp = AuroraFramework.libraries.miscellaneous.clamp
 }
