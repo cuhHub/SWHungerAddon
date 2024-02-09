@@ -17,7 +17,7 @@ Feel free to `git clone`, or even contribute.
 
 ## 💻 | Setup
 ### 😎 | Simple
-1) [Subscribe to the addon from the Steam workshop.](TODO) TODO
+1) [Subscribe to the addon from the Steam workshop.](https://steamcommunity.com/sharedfiles/filedetails/?id=3156992745)
 2) Create a new save, but before loading it, enable this addon.
 3) When enabling the addon, you will see a cog icon. Click it to open up the options menu, then configure the addon to however you desire. The default options are recommended.
 4) Load into the save and have fun.
