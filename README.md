@@ -2,7 +2,7 @@
 
 ---
 
-# ⚙️ | Hunger Addon
+# 🐟 | Hunger Addon
 
 ## 📚 | Overview
 An addon that adds a hunger system to Stormworks.
