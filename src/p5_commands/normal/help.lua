@@ -20,6 +20,10 @@ AuroraFramework.services.commandService.create(function(player, command, args)
     local commandsFormatted = {}
 
     for _, commandToDisplay in pairs(AuroraFramework.services.commandService.commands) do
+        if commandToDisplay.properties.description == "" then -- probably a hidden/debug command
+            goto continue
+        end
+
         -- format shorthands
         local formattedShorthands = {}
 
@@ -27,14 +31,31 @@ AuroraFramework.services.commandService.create(function(player, command, args)
             table.insert(formattedShorthands, "?"..shorthand)
         end
 
+        -- format permissions
+        local permissionsRequired = {}
+
+        if command.properties.requiresAdmin then
+            table.insert(permissionsRequired, "Admin")
+        end
+
+        if command.properties.requiresAuth then
+            table.insert(permissionsRequired, "Auth")
+        end
+
+        if not permissionsRequired[1] then
+            table.insert(permissionsRequired, "None")
+        end
+
         -- add formatted command to table
         local commandFormatted = table.concat({
             ("?%s | %s"):format(commandToDisplay.properties.name, commandToDisplay.properties.description),
-            table.concat(formattedShorthands, ", "),
-            (commandToDisplay.properties.requiresAdmin and "Requires Admin" or commandToDisplay.properties.requiresAuth and "Requires Auth") or "Requires No Permissions"
-        }, "\n")
+            "Shorthands: "..table.concat(formattedShorthands, ", "),
+            "Permissions Required: "..table.concat(permissionsRequired, ", ")
+        }, "\n\\---")
 
         table.insert(commandsFormatted, commandFormatted)
+
+        ::continue::
     end
 
     -- send help message
@@ -45,7 +66,7 @@ AuroraFramework.services.commandService.create(function(player, command, args)
             "",
             "Commands -----",
             table.concat(commandsFormatted, "\n")
-        }, "\n---"),
+        }, "\n---\n"),
 
         player
     )
