@@ -26,7 +26,7 @@ addonConfiguration = {
 
         description = {
             short = "An addon that adds a hunger system to Stormworks.",
-            long = "An addon that adds a hunger system to Stormworks. Use '?eat' with fish in your inventory to replenish hunger."
+            long = "An addon that adds a hunger system to Stormworks. Use '?eat' with a consumable in your inventory to replenish hunger. Use '?consumables' to see all consumable items."
         },
 
         requiredDLCs = {
