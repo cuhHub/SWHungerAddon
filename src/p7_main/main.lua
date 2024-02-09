@@ -51,49 +51,49 @@ hungerLibrary.configuration.hungerDecreaseTimer = g_savedata.userAddonConfig.hun
 hungerLibrary.configuration.hungerDecreaseAmount = g_savedata.userAddonConfig.hungerDecreaseAmount
 
 -- // Setup Consumables
-hungerLibrary.consumables.createConsumable(
+hungerLibrary.consumables.registerConsumable(
     "Anchovie",
     82,
     25,
     3
 )
 
-hungerLibrary.consumables.createConsumable(
+hungerLibrary.consumables.registerConsumable(
     "Anglerfish",
     83,
     20,
     2
 )
 
-hungerLibrary.consumables.createConsumable(
+hungerLibrary.consumables.registerConsumable(
     "Cod",
     91,
     32,
     5
 )
 
-hungerLibrary.consumables.createConsumable(
+hungerLibrary.consumables.registerConsumable(
     "Mackerel",
     100,
     17,
     1
 )
 
-hungerLibrary.consumables.createConsumable(
+hungerLibrary.consumables.registerConsumable(
     "Salmon",
     109,
     38,
     3
 )
 
-hungerLibrary.consumables.createConsumable(
+hungerLibrary.consumables.registerConsumable(
     "Sardine",
     110,
     26,
     2
 )
 
-hungerLibrary.consumables.createConsumable(
+hungerLibrary.consumables.registerConsumable(
     "Trout",
     121,
     20,

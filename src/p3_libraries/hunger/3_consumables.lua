@@ -23,7 +23,7 @@ hungerLibrary.consumables = {
     ---@param equipmentType SWEquipmentTypeEnum
     ---@param hungerGain number
     ---@param timeToConsume number
-    createConsumable = function(name, equipmentType, hungerGain, timeToConsume)
+    registerConsumable = function(name, equipmentType, hungerGain, timeToConsume)
         ---@type addon_libs_hunger_consumable
         local consumable = AuroraFramework.libraries.class.create(
             "HungerLibrary-Consumable",
