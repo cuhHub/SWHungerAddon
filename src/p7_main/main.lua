@@ -19,7 +19,7 @@ g_savedata.userAddonConfig = {
     -- do not split "property.blabla" over multiple lines. stormworks parses the text literally so it will not work and crash your game
     showUI = property.checkbox("UI - Show hunger level", true),
     startingHunger = property.slider("Hunger - Starting hunger level", 10.0, 100.0, 1.0, 80.0),
-    hungerDecreaseTimer = property.slider("Hunger - Time between periods of losing hunger", 60.0, 400.0, 1.0, 130.0),
+    hungerDecreaseTimer = property.slider("Hunger - Time between periods of losing hunger (seconds)", 60.0, 400.0, 1.0, 130.0),
     hungerDecreaseAmount = property.slider("Hunger - The amount of hunger lost per hunger loss period", 1.0, 20.0, 1.0, 3.0),
 }
 
