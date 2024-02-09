@@ -77,7 +77,7 @@ hungerLibrary = {
     ---@param player af_services_player_player
     ---@param amount number
     setHunger = function(player, amount)
-        g_savedata.hungerLibrary.playerHunger[player.properties.steam_id] = hungerLibrary.utils.clamp(0, hungerLibrary.configuration.maxHunger, amount)
+        g_savedata.hungerLibrary.playerHunger[player.properties.steam_id] = hungerLibrary.utils.clamp(amount, 0, hungerLibrary.configuration.maxHunger)
     end,
 
     ---@param player af_services_player_player
