@@ -21,7 +21,7 @@ AuroraFramework.services.commandService.create(function(player, command, args)
     helpersLibrary.chat.send(
         "Your hunger is %s/%s.",
         player,
-        hunger,
+        math.floor(hunger),
         hungerLibrary.configuration.maxHunger
     )
 end, "hungerlevel", {"hunger", "hu"}, false, "Shows your hunger level.")
