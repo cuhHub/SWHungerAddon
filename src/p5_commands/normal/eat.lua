@@ -16,6 +16,14 @@
 -- // Main
 -------------------------------
 AuroraFramework.services.commandService.create(function(player, command, args)
+    -- check if player is full
+    if hungerLibrary.getHunger(player) >= hungerLibrary.configuration.maxHunger then
+        return command:failureNotification(
+            "You're too full to eat!",
+            player
+        )
+    end
+
     -- check if this command has a cooldown
     if cooldownLibrary.playerHasCooldown(player, "eat") then
         return command:failureNotification(
