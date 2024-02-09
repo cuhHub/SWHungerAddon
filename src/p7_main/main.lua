@@ -54,49 +54,49 @@ hungerLibrary.configuration.hungerDecreaseAmount = g_savedata.userAddonConfig.hu
 hungerLibrary.consumables.registerConsumable(
     "Anchovie",
     82,
-    25,
+    18,
     3
 )
 
 hungerLibrary.consumables.registerConsumable(
     "Anglerfish",
     83,
-    20,
+    17,
     2
 )
 
 hungerLibrary.consumables.registerConsumable(
     "Cod",
     91,
-    32,
+    20,
     5
 )
 
 hungerLibrary.consumables.registerConsumable(
     "Mackerel",
     100,
-    17,
+    13,
     1
 )
 
 hungerLibrary.consumables.registerConsumable(
     "Salmon",
     109,
-    38,
+    17,
     3
 )
 
 hungerLibrary.consumables.registerConsumable(
     "Sardine",
     110,
-    26,
+    14,
     2
 )
 
 hungerLibrary.consumables.registerConsumable(
     "Trout",
     121,
-    20,
+    12,
     4
 )
 
