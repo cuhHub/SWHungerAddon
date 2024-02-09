@@ -128,7 +128,12 @@ hungerLibrary.consumables.registerConsumable(
     5.7
 )
 
-
+hungerLibrary.consumables.registerConsumable(
+    "First-Aid Kit",
+    11,
+    11,
+    6
+)
 
 -- // Library Initialization
 hungerLibrary.initialize()
