@@ -26,8 +26,8 @@ AuroraFramework.services.playerService.events.onJoin:connect(function(player)
     local UI = AuroraFramework.services.UIService.createScreenUI(
         AuroraFramework.services.UIService.name("HungerUI", player),
         "Setting up...",
-        0,
-        0.85,
+        -0.9,
+        0.9,
         player
     )
 
