@@ -48,7 +48,7 @@ addonConfiguration = {
     },
 
     dev = {
-        debugEnabled = true,
+        debugEnabled = false,
         isDedicatedServer = false
     }
 }
