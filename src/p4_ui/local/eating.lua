@@ -45,6 +45,6 @@ hungerLibrary.events.consuming:connect(function(player, hasFinished, consumable)
         return
     end
 
-    UI.properties.visible = hasFinished
+    UI.properties.visible = not hasFinished
     UI:refresh()
 end)
