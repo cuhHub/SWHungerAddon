@@ -21,7 +21,7 @@
 hungerLibrary.events.hungerLoss:connect(function(player, amountToLose)
     AuroraFramework.services.notificationService.warning(
         "Hunger",
-        ("%s hunger. Uh oh!"):format(hungerLibrary.utils.formatGivenHunger(amountToLose)),
+        ("%s hunger. Uh oh!"):format(hungerLibrary.utils.formatGivenHunger(-amountToLose)),
         player
     )
 end)
