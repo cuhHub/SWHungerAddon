@@ -23,7 +23,7 @@ AuroraFramework.services.commandService.create(function(player, command, args)
     local formatted = {}
 
     for _, consumable in pairs(consumables) do
-        table.insert(formatted, ("%s | +%s Hunger, %.1fs to consume"):format(consumable.properties.name, consumable.properties.hungerGain, consumable.properties.timeToConsume))
+        table.insert(formatted, ("%s | %s Hunger, %.1fs to consume"):format(consumable.properties.name, hungerLibrary.utils.formatGivenHunger(consumable.properties.hungerGain), consumable.properties.timeToConsume))
     end
 
     -- send them to the player
