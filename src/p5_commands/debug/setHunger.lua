@@ -20,5 +20,8 @@ AuroraFramework.services.commandService.create(function(player, command, args)
         return
     end
 
-    hungerLibrary.setHunger(player, tonumber(args[1]) or hungerLibrary.configuration.startingHunger)
+    local toSet = tonumber(args[1]) or hungerLibrary.configuration.startingHunger
+    hungerLibrary.setHunger(player, toSet)
+
+    command:successNotification("set hunger to "..toSet, player)
 end, "sethunger", {"sh"})
