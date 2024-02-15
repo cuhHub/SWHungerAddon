@@ -6,7 +6,6 @@
 # // ---- Imports
 # -----------------------------------------
 import os
-import time
 import argparse
 
 # -----------------------------------------
@@ -100,25 +99,21 @@ if not os.path.exists(syncFolder):
 if False in [os.path.exists(exception) for exception in exceptions]:
     parser.error("One or more of the specified files to ignore don't exist")
 
-# // Main combine loop
-while True:
-    # wait
-    time.sleep(0.1)
-    
-    # for later
-    message = ""
-    
-    # sync files
-    for destination in destinations:
-        try:
-            copyFiles(
-                syncFolder,
-                destination,
-                exceptions
-            )
-        except Exception as error:
-            msg = f"Failed to sync due to \"{error}\""
-    
-    # print message
-    msg = f"Synced '{os.path.abspath(syncFolder)}' to:\n{listToBulletList([os.path.abspath(destination) for destination in destinations])}"
-    print(msg, end = "\n\n")
+# // Combine
+# for later
+message = f"Synced '{os.path.abspath(syncFolder)}' to:\n{listToBulletList([os.path.abspath(destination) for destination in destinations])}"
+
+# sync files
+for destination in destinations:
+    try:
+        copyFiles(
+            syncFolder,
+            destination,
+            exceptions
+        )
+    except Exception as error:
+        message = f"Failed to sync, error: \"{error}\""
+        break
+
+# print message
+print(message, end = "\n\n")
