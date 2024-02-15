@@ -152,6 +152,24 @@ end
 ---------------- Miscellaneous
 AuroraFramework.libraries.miscellaneous = {}
 
+-- Split a string (source: https://stackoverflow.com/questions/1426954/split-string-in-lua)
+---@param str string
+---@param separator string|nil
+---@return table<integer, string>
+AuroraFramework.libraries.miscellaneous.splitString = function(str, separator)
+	if not sep then
+		sep = "%s"
+	end
+
+	local parts = {}
+
+	for part in string.gmatch(str, "([^"..sep.."]+)") do
+		table.insert(parts, part)
+	end
+
+	return parts
+end
+
 -- Recursively convert a table to string
 ---@param tbl table
 ---@param indent number|nil
@@ -2247,6 +2265,14 @@ end
 ---------------- Players
 AuroraFramework.services.playerService = {
 	initialize = function()
+		-- Call player onLeave when onDestroy is called
+		AuroraFramework.callbacks.onDestroy.internal:connect(function()
+			for _, player in pairs(AuroraFramework.services.playerService.getAllPlayers()) do
+				AuroraFramework.services.playerService.internal.removePlayerData(player.properties.peer_id)
+				AuroraFramework.services.playerService.events.onLeave:fire(player)
+			end
+		end)
+
 		-- Load players that are currently in the server without calling events
 		for _, player in pairs(server.getPlayers()) do
 			-- check if the player is connecting and hasnt loaded (the infamous "unnamed client")
@@ -2265,12 +2291,24 @@ AuroraFramework.services.playerService = {
 				player.auth
 			)
 
-			-- if the player's peer id isnt stored in g_savedata, that means they connected to the server for the first time, but the addon wasnt working when they joined. therefore, call the onJoin event
-			if playerData and not isRecognized then
-				AuroraFramework.services.timerService.delay.create(0, function()
-					AuroraFramework.services.playerService.events.onJoin:fire(playerData)
-				end)
+			if not playerData then
+				goto continue
 			end
+
+			-- we only want to fire the onJoin event if this is the player's first time joining
+			-- if isRecognized then
+			-- 	goto continue
+			-- end
+
+			-- TODO: fix host player still being recognized in g_savedata.recognizedPeerIDs
+			-- this is because onDestroy is called AFTER everything is saved when the host saves and leaves
+			-- this is super problematic, and i honestly don't think i can fix this as this is more of a stormworks issue
+			-- FUCK
+			-- until i find a solution, the recognized check above will be commented out, that way the onJoin event gets
+			-- called regardless of if the player is recognized or not
+
+			-- fire join event
+			AuroraFramework.services.playerService.events.onJoin:fire(player)
 
 			::continue::
 		end
@@ -3354,6 +3392,25 @@ end
 ---------------- UI
 AuroraFramework.services.UIService = {
 	initialize = function()
+		-- hacky fix to the host player not having UI shown if they loaded into a save with UI saved in g_savedata. weirdly this doesn't occur with ?reload_scripts, so its likely a stormworks quirk
+		AuroraFramework.services.timerService.delay.create(2, function()
+			-- the "host" would be a player who joined after server creation if this framework is running in a dedicated server
+			if AuroraFramework.services.playerService.isDedicatedServer then
+				return
+			end
+			
+			-- get host player (peer id 0)
+			local host = AuroraFramework.services.playerService.getPlayerByPeerID(0)
+
+			if not host then
+				return
+			end
+
+			for _, UI in pairs(AuroraFramework.services.UIService.getAllUIShownToPlayer(host)) do
+				UI:refresh()
+			end
+		end)
+
 		-- load map objects
 		for _, mapObject in pairs(g_savedata.AuroraFramework.UI.mapObjects) do
 			-- get the player, or nil if the ui is for everyone
@@ -3381,7 +3438,7 @@ AuroraFramework.services.UIService = {
 			)
 
 			-- update properties
-			ui.properties.visible = mapObject.visible
+			ui.properties.visible = mapObject.visible	
 			ui:attach(mapObject.positionType, mapObject.attachID) -- automatically refreshes ui
 		end
 
@@ -3467,25 +3524,15 @@ AuroraFramework.services.UIService = {
 		-- show ui on join
 		AuroraFramework.services.playerService.events.onJoin:connect(function(player) ---@param player af_services_player_player
 			-- show all ui
-			for _, uiContainers in pairs(AuroraFramework.services.UIService.UI) do
-				for _, ui in pairs(uiContainers) do
-					if not ui.properties.player then -- since the player who joined has a new peer id, they will never be the target of an ui object, so no point in checking
-						-- show to all
-						ui:refresh()
-					end
-				end
+			for _, UI in pairs(AuroraFramework.services.UIService.getUIShownToEveryone()) do
+				UI:refresh()
 			end
 		end)
 
 		-- remove ui on leave
 		AuroraFramework.services.playerService.events.onLeave:connect(function(player) ---@param player af_services_player_player
-			for _, uiContainers in pairs(AuroraFramework.services.UIService.UI) do
-				for _, ui in pairs(uiContainers) do
-					if ui.properties.player and AuroraFramework.services.playerService.isSamePlayer(ui.properties.player, player) then
-						-- remove since this ui is only being shown for this player
-						ui:remove()
-					end
-				end
+			for _, UI in pairs(AuroraFramework.services.UIService.getAllUIShownToPlayer(player)) do
+				UI:remove()
 			end
 		end)
 	end,
@@ -3506,6 +3553,47 @@ AuroraFramework.services.UIService = {
 
 	internal = {}
 }
+
+-- Get all UI shown to everyone
+---@return table<integer, af_services_ui_ui>
+AuroraFramework.services.UIService.getUIShownToEveryone = function()
+	local list = {}
+
+	for _, UIContainer in pairs(AuroraFramework.services.UIService.UI) do
+		for _, UI in pairs(UIContainer) do
+			if UI.properties.player then
+				goto continue
+			end
+
+			table.insert(list, UI)
+
+		    ::continue::
+		end
+	end
+
+	return list
+end
+
+-- Get all UI shown to a specific player
+---@param player af_services_player_player
+---@return table<integer, af_services_ui_ui>
+AuroraFramework.services.UIService.getAllUIShownToPlayer = function(player)
+	local list = {}
+
+	for _, UIContainer in pairs(AuroraFramework.services.UIService.UI) do
+		for _, UI in pairs(UIContainer) do
+			if not AuroraFramework.services.playerService.isSamePlayer(UI.properties.player, player) then
+				goto continue
+			end
+
+			table.insert(list, UI)
+
+		    ::continue::
+		end
+	end
+
+	return list
+end
 
 -- Mix UI name with player peer ID to prevent UI duplicates
 ---@param name string
