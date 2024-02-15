@@ -2264,14 +2264,13 @@ end
 
 ---------------- Players
 AuroraFramework.services.playerService = {
-	initialize = function()
-		-- Call player onLeave when onDestroy is called
-		AuroraFramework.callbacks.onDestroy.internal:connect(function()
-			for _, player in pairs(AuroraFramework.services.playerService.getAllPlayers()) do
-				AuroraFramework.services.playerService.internal.removePlayerData(player.properties.peer_id)
-				AuroraFramework.services.playerService.events.onLeave:fire(player)
-			end
-		end)
+	---@param state af_ready_state
+	initialize = function(state)
+		-- Purge recognized peer IDs if loading into a save
+		-- This is because no players can be rejoining the server after a save
+		if state == "save_load" then
+			g_savedata.AuroraFramework.recognizedPeerIDs = {}
+		end
 
 		-- Load players that are currently in the server without calling events
 		for _, player in pairs(server.getPlayers()) do
@@ -2296,19 +2295,12 @@ AuroraFramework.services.playerService = {
 			end
 
 			-- we only want to fire the onJoin event if this is the player's first time joining
-			-- if isRecognized then
-			-- 	goto continue
-			-- end
-
-			-- TODO: fix host player still being recognized in g_savedata.recognizedPeerIDs
-			-- this is because onDestroy is called AFTER everything is saved when the host saves and leaves
-			-- this is super problematic, and i honestly don't think i can fix this as this is more of a stormworks issue
-			-- FUCK
-			-- until i find a solution, the recognized check above will be commented out, that way the onJoin event gets
-			-- called regardless of if the player is recognized or not
+			if isRecognized then
+				goto continue
+			end
 
 			-- fire join event
-			AuroraFramework.services.playerService.events.onJoin:fire(player)
+			AuroraFramework.services.playerService.events.onJoin:fire(playerData)
 
 			::continue::
 		end
