@@ -29,7 +29,12 @@ def quickRead(path: str, mode: str = "r"):
         return f.read()
     
 # // Write to a file
-def quickWrite(path: str, content: str, mode: str = "r"):
+def quickWrite(path: str, content: str, mode: str = "w"):
+    directory = os.path.dirname(path)
+    
+    if not os.path.exists(directory):
+        os.makedirs(directory, exist_ok = True)
+    
     with open(path, mode) as f:
         return f.write(content)
     
