@@ -67,7 +67,7 @@ def recursiveRead(targetDir: str, allowedFileExtensions: list[str], pathExceptio
             continue
         
         # get file content
-        content = quickRead(path)
+        content = quickRead(path, "rb")
         
         # append file content to contents
         contents[path] = content
@@ -110,6 +110,6 @@ for path, content in result.items():
 
 # dump it into output file
 try:
-    quickWrite(args.destination, "\n\n".join(result.values()))
+    quickWrite(args.destination, "\n\n".join(result.values()), "wb")
 except:
     print("Failed to output.")
