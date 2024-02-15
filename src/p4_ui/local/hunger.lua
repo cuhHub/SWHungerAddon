@@ -23,16 +23,24 @@ AuroraFramework.services.playerService.events.onJoin:connect(function(player)
     end
 
     -- create UI
-    local UI = AuroraFramework.services.UIService.createScreenUI(
+    AuroraFramework.services.UIService.createScreenUI(
         AuroraFramework.services.UIService.name("HungerUI", player),
         "Setting up...",
         -0.9,
         0.9,
         player
     )
+end)
 
-    -- update UI
-    helpersLibrary.misc.loopUntilPlayerLeaves(player, 0, function()
+AuroraFramework.services.timerService.loop.create(0, function()
+    for _, player in pairs(AuroraFramework.services.playerService.getAllPlayers()) do
+        -- get hunger ui
+        local UI = AuroraFramework.services.UIService.getScreenUI(AuroraFramework.services.UIService.name("HungerUI", player))
+
+        if not UI then
+            goto continue
+        end
+
         -- get player hunger level
         local hunger = hungerLibrary.getHunger(player)
 
@@ -48,5 +56,7 @@ AuroraFramework.services.playerService.events.onJoin:connect(function(player)
         }, "\n")
 
         UI:refresh()
-    end)
+
+        ::continue::
+    end
 end)
