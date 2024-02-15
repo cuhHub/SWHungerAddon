@@ -81,7 +81,7 @@ def recursiveRead(targetDir: str, allowedFileExtensions: list[str], pathExceptio
 # setup parser args
 parser.add_argument("-d", "-p", "--directory", "--path", type = str, help = "The directory containing files to combine.", required = True)
 parser.add_argument("-de", "--destination", type = str, help = "The file which should have the content of all files combined. Created automatically if it doesn't exist.", required = True)
-parser.add_argument("-ife", "--allow_file_extension", type = str, nargs = "*", help = "The file extensions to allow.", default = [])
+parser.add_argument("-afe", "--allow_file_extension", type = str, nargs = "*", help = "The file extensions to allow.", default = [])
 parser.add_argument("-ip", "--ignore_path", type = str, nargs = "*", help = "The paths to ignore when combining.", default = [])
 
 args = parser.parse_args()
