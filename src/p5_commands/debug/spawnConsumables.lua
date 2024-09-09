@@ -21,6 +21,6 @@ AuroraFramework.services.commandService.create(function(player, command, args)
     end
 
     for _, consumable in pairs(hungerLibrary.consumables.getAllConsumables()) do
-        server.spawnEquipment(player:getPosition(), consumable.properties.equipmentType, 100, 100)
+        server.spawnEquipment(player:getPosition(), consumable.properties.equipmentType, 0, 0)
     end
 end, "spawnconsumables", {"sc"})
