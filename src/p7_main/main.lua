@@ -54,64 +54,225 @@ hungerLibrary.configuration.hungerDecreaseAmount = g_savedata.userAddonConfig.hu
 hungerLibrary.consumables.registerConsumable(
     "Anchovie",
     82,
-    18,
-    3.9
-)
-
-hungerLibrary.consumables.registerConsumable(
-    "Anglerfish",
-    83,
-    17,
-    2.2
-)
-
-hungerLibrary.consumables.registerConsumable(
-    "Cod",
-    91,
-    20,
-    5
-)
-
-hungerLibrary.consumables.registerConsumable(
-    "Mackerel",
-    100,
-    13,
-    1.5
-)
-
-hungerLibrary.consumables.registerConsumable(
-    "Salmon",
-    109,
-    17,
-    3.4
-)
-
-hungerLibrary.consumables.registerConsumable(
-    "Sardine",
-    110,
-    14,
-    2.7
-)
-
-hungerLibrary.consumables.registerConsumable(
-    "Trout",
-    121,
     12,
     4.5
 )
 
 hungerLibrary.consumables.registerConsumable(
-    "Viperfish",
-    123,
-    14,
-    2.8
+    "Anglerfish",
+    83,
+    10,
+    5.0
 )
 
 hungerLibrary.consumables.registerConsumable(
-    "Snapper",
-    117,
-    -6,
+    "Arctic Char",
+    84,
+    15,
+    6.0
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Ballan Lizardfish",
+    85,
+    11,
+    4.8
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Ballan Wrasse",
+    86,
+    13,
+    5.2
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Barreleye Fish",
+    87,
+    9,
+    6.5
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Black Bream",
+    88,
+    14,
     5.5
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Black Dragonfish",
+    89,
+    8,
+    7.0
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Clown Fish",
+    90,
+    7,
+    4.2
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Cod",
+    91,
+    16,
+    5.8
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Dolphinfish",
+    92,
+    12,
+    5.0
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Gulper Eel",
+    93,
+    6,
+    7.8
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Haddock",
+    94,
+    15,
+    6.3
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Hake",
+    95,
+    13,
+    4.9
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Herring",
+    96,
+    11,
+    5.4
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "John Dory",
+    97,
+    10,
+    6.2
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Labrus",
+    98,
+    14,
+    5.6
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Lanternfish",
+    99,
+    8,
+    6.7
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Mackerel",
+    100,
+    12,
+    5.3
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Midshipman",
+    101,
+    7,
+    4.7
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Perch",
+    102,
+    13,
+    5.1
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Pike",
+    103,
+    16,
+    5.9
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Pinecone Fish",
+    104,
+    9,
+    6.6
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Pollack",
+    105,
+    14,
+    5.2
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Red Mullet",
+    106,
+    11,
+    5.4
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Rockfish",
+    107,
+    10,
+    6.1
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Sablefish",
+    108,
+    15,
+    6.0
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Salmon",
+    109,
+    16,
+    5.8
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Sardine",
+    110,
+    7,
+    4.3
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Scad",
+    111,
+    13,
+    5.7
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Sea Bream",
+    112,
+    12,
+    5.0
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Sea Halibut",
+    113,
+    14,
+    6.2
 )
 
 hungerLibrary.consumables.registerConsumable(
@@ -122,10 +283,73 @@ hungerLibrary.consumables.registerConsumable(
 )
 
 hungerLibrary.consumables.registerConsumable(
-    "Tuna",
-    124,
+    "Seabass",
+    115,
+    15,
+    5.6
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Slimehead",
+    116,
+    8,
+    6.8
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Snapper",
+    117,
+    12,
+    5.4
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Golden Snapper",
+    118,
     16,
+    5.9
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Snook",
+    119,
+    13,
+    5.5
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Spadefish",
+    120,
+    10,
+    6.3
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Trout",
+    121,
+    15,
     5.7
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Tubeshoulders Fish",
+    122,
+    7,
+    4.6
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Viperfish",
+    123,
+    -6,
+    7.5
+)
+
+hungerLibrary.consumables.registerConsumable(
+    "Yellowfin Tuna",
+    124,
+    18,
+    6.0
 )
 
 hungerLibrary.consumables.registerConsumable(
