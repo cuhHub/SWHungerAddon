@@ -1,13 +1,16 @@
-![Game Screenshot](imgs/1.png)
+# ⚠️ Archived
+This addon is far outdated and will no longer be maintained. A remake may eventually be made in the future.
 
 ---
+
+![Game Screenshot](imgs/1.png)
 
 # 🐟 | Hunger Addon
 
 ## 📚 | Overview
 This addon that adds a hunger system to Stormworks: Build and Rescue, making fishing more of a necessity than a desire.
 
-This addon uses [Aurora Framework](https://github.com/Cuh4/AuroraFramework), a framework I created that tremendously helps with addon development.
+~~This addon uses [Aurora Framework](https://github.com/Cuh4/AuroraFramework), a framework I created that tremendously helps with addon development.~~ Check out [Noir](https://github.com/Cuh4/AuroraFramework) instead! 
 
 Feel free to `git clone`, or even contribute.
 
